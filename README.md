@@ -1,5 +1,5 @@
 # tdd-restful
-
+## 2017-11-04学习内容
 1、在Nodejs与mongoose中常用做法为，当程序开始执行时就打开数据库连接，并且保持到程序结束
 mongoose的auto_reconnect与disconnect作用
 
@@ -23,3 +23,9 @@ babel6 = balel-core + 插件(
 5、es6模块化语法注意事项  
 - import有两种引入方式，一种是引入export default的默认导出，此时不需要使用import {} from 的形式，另一种是引入模块中明确的接口即import {}
 - export default方式导出时不需要声明与赋值，非default方式导出时必须写明__变量声明与赋值__(例如export const hehe = 'hehe'，缺少=或者const声明都是错误的)
+
+### 问题记录
+1. await与async如何解决回调问题
+2. es6类与继承写法练习
+3. promise写法练习
+4. 静态方法与实例方法区别
