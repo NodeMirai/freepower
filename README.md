@@ -29,3 +29,14 @@ babel6 = balel-core + 插件(
 2. es6类与继承写法练习
 3. promise写法练习
 4. 静态方法与实例方法区别
+
+## 2017-11-05
+### 目标
+1. 完成article的crud接口  
+- 为express添加body-parser中间件来提供请求体解析与urlencode(encode与decode)
+
+2. article接口改为restful形式(参考公司文档)
+
+3. 添加superior来保证对服务器文件变化的实时更新
+
+4. 为article接口添加单元测试()

@@ -7,6 +7,8 @@ import article from '../../controller/article'
 const router = express.Router()
 
 router.get('/article', article.getAllArticles)
-router.get('/insertOne', article.insertOne)
+router.post('/article', article.insertOne)
+router.delete('/deleteOne', article.deleteOne)
+router.put('/article', article.updateOneAndReturn)
 
 export default router

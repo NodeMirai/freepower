@@ -17,15 +17,4 @@ const articleSchema = new Schema({
 
 const Article = mongoose.model('Article', articleSchema)
 
-const article = new Article({
-  title: 'test',
-  datetime: new Date(),
-  type: 'happy',
-  words: 40,
-  readCounts: 50,
-})
-
-export default { 
-  Article,
-  article
-}
+export default Article
