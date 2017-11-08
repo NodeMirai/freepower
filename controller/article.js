@@ -5,13 +5,12 @@
 
 import ArticleModel from '../model/article'
 
-console.log(ArticleModel)
 
 const ArticleController = {
   getAllArticles(req, res, next) {
     let data = ArticleModel.find((err, articles) => {
       if (err) console.error(err)
-      console.log(articles)
+      
       return res.send(articles)
     })
   },
@@ -19,11 +18,13 @@ const ArticleController = {
   // 新增文章
   insertOne(req, res, next) {
     let article = req.body
-    
-    ArticleModel.createarticle( ,(err, article) => {
+    console.log(article)
+    ArticleModel.create( article ,(err, article) => {
+      if (err) {
+        console.error(err)
+      }
       // 从req的body中获取插入数据，根据获取数据创建实例并插入数据库
-      console.log(article)
-      res.end()
+      res.end('post success')
     })
   },
 

@@ -6,9 +6,9 @@ import article from '../../controller/article'
 
 const router = express.Router()
 
-router.get('/article', article.getAllArticles)
-router.post('/article', article.insertOne)
-router.delete('/deleteOne', article.deleteOne)
-router.put('/article', article.updateOneAndReturn)
+router.get('/', article.getAllArticles)
+router.post('/', article.insertOne)
+router.delete('/id', article.deleteOne)
+router.put('/id', article.updateOneAndReturn)
 
 export default router
