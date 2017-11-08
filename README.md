@@ -46,5 +46,9 @@ babel6 = balel-core + 插件(
 ## 2017-11-07
 ### 目标
 1. 完成article接口单元测试
+__mocha测试mongoose__链接数据库基本操作注意事项：
+- 首先需要保证mongoose链接数据库成功
+- 链接成功后，必须在每个实体的crud测试中，引入mongoose生成schame与model，否则
+
 2. 前段对接crud接口完成
 3. react-router完成目标组件之间的跳转
