@@ -39,4 +39,12 @@ babel6 = balel-core + 插件(
 
 3. 添加superior来保证对服务器文件变化的实时更新
 
-4. 为article接口添加单元测试()
+4. 为article接口添加单元测试(chai，mocha)
+- describe表示一个测试套件，代表一个测试任务
+- it表示一个测试用例，表示测试内容的最小单位，describe内部至少有一个it
+
+## 2017-11-07
+### 目标
+1. 完成article接口单元测试
+2. 前段对接crud接口完成
+3. react-router完成目标组件之间的跳转

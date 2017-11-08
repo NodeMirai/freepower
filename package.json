@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register ./test/article/article.test.js"
   },
   "keywords": [],
   "author": "Nodemirai",
@@ -18,7 +18,7 @@
     "morgan": "^1.9.0"
   },
   "devDependencies": {
-    "expect": "^21.2.1",
+    "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "superagent": "^3.8.0"
   }
