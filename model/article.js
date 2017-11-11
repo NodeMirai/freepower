@@ -10,6 +10,7 @@ const articleSchema = new Schema({
   title: String,
   datetime: Date,
   type: String,
+  content: String,
   // commit:      与其他用户相关，待定
   words: Number,
   readCounts: Number, 

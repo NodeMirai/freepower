@@ -11,8 +11,12 @@ const ArticleController = {
   getAllArticles(req, res, next) {
     let data = ArticleModel.find((err, articles) => {
       if (err) console.error(err)
-      
-      return res.send(articles)
+
+      return res.send({
+        status: 200,
+        message: '查询数据成功',
+        data: articles
+      })
     })
   },
 
@@ -25,7 +29,10 @@ const ArticleController = {
         console.error(err)
       }
       // 从req的body中获取插入数据，根据获取数据创建实例并插入数据库
-      res.end('post success')
+      res.send({
+        status: 200,
+        message: 'post success'
+      })
     })
   },
 
@@ -33,26 +40,35 @@ const ArticleController = {
   deleteAll(req, res, next) {
     ArticleModel.remove(function(err) {
       if (err) console.error(err)
-      res.send('delete successed')
+      res.send({
+        status: 200,
+        message: 'delete all successed'
+      })
     })
   },
 
   // 删除单个文章
   deleteOne(req, res, next) {
     // 获取删除id，根据id删除数据
-    let type = req.query.type
-    
-    ArticleModel.deleteOne({ type }, (err) => {
-      res.send('delete success')
+    let _id = req.params.id
+    console.log(_id)
+    ArticleModel.deleteOne({ _id }, (err) => {
+      res.send({
+        status: 200,
+        message: 'delete success'
+      })
     })
   },
 
   // 更新单个文章
   updateOneAndReturn(req, res, next) {
-    let query = req.query.id
-
-    ArticleModel.findOneAndUpdate(query, update, () => {
-      res.send('update success')
+    let query = req.body
+    console.log(query)
+    ArticleModel.findOneAndUpdate({_id: query.id}, { title: query.title, content: query.content }, () => {
+      res.send({
+        status: 200,
+        message: 'update success'
+      })
     })
   },
 }
