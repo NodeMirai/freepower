@@ -53,4 +53,16 @@ babel6 = balel-core + 插件(
 2. 前段对接crud接口完成
 - 接口返回状态，成功20X，重定向相关30X,客户端错误40X,服务端错误50x
 
-3. react-router完成目标组件之间的跳转
+## 2017-11-13
+### 目标
+1. 添加dev与pro两种环境控制
+app.js中通过process.env.NODE_ENV获取传入的环境名，默认之后为'development'
+命令如下：
+- linux & mac: export NODE_ENV=production
+- windows: set NODE_ENV=production
+dev: 使用本地mongodb数据库ip，端口号为12345
+pro: 使用127.0.0.1,端口号为27017
+
+2. 添加制定port运行方式
+app.js中通过process.env.PORT获取命令行中指定的端口号  
+命令如下：PORT=1234 node index.js
