@@ -5,8 +5,6 @@
 
 import ArticleModel from '../model/article'
 
-console.log(ArticleModel)
-
 const ArticleController = {
   getAllArticles(req, res, next) {
     let data = ArticleModel.find((err, articles) => {

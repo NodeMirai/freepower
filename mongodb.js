@@ -1,9 +1,4 @@
 import mongoose from 'mongoose'
-import config from './config'
-
-mongoose.connect(config.url, {
-  useMongoClient: true,
-})
 
 const db = mongoose.connection
 
