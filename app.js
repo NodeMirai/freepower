@@ -6,11 +6,6 @@ import config from './config'
 import bodyParser from 'body-parser'
 
 const port = process.env.PORT || config.port
-let url = process.env.NODE_ENV === 'production' ? config.proDBUrl : url = config.devDBUrl
-
-mongoose.connect(url, {
-  useMongoClient: true,
-})
 
 const app = express()
 

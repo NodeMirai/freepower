@@ -16,6 +16,8 @@ const articleSchema = new Schema({
   readCounts: Number, 
 })
 
-const Article = mongoose.model('Article', articleSchema)
+let Article = mongoose.model('Article', articleSchema)
+
+console.log(Article)
 
 export default Article

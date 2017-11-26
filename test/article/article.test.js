@@ -1,5 +1,6 @@
 var expect = require('chai').expect
-import mongoose from 'mongoose'
+import db from '../../mongodb'
+import ArticleModel from '../../model/article'
 
 /**
  * 所有接口结果都为异步操作，it默认2000毫秒不反回则视为报错
@@ -8,8 +9,7 @@ import mongoose from 'mongoose'
 // 为article的crud添加一个测试套件
 
 describe('article crud', function () {
-  var ArticleModel
-
+ 
   var testArticle = {
     title: 'test_title',
     content: 'test_content',
@@ -17,7 +17,7 @@ describe('article crud', function () {
   }
 
   // 为保证测试准确，先清空数据库
-  before(function () {
+  /* before(function () {
     const Schema = mongoose.Schema
     
     const articleSchema = new Schema({
@@ -31,7 +31,7 @@ describe('article crud', function () {
     
     ArticleModel = mongoose.model('Article', articleSchema)
     
-  })
+  }) */
 
   // 添加一个article
   it('新增一个文章对象，和插入成功对象一致则通过', function () {
