@@ -3,7 +3,9 @@
  */
 
 import article from './article/article'
+import user from './user/user'
 
 export default app => {
   app.use('/article', article)
+  app.use('/user', user)
 }

@@ -68,5 +68,10 @@ app.js中通过process.env.PORT获取命令行中指定的端口号
 命令如下：PORT=1234 node index.js
 
 ## 2017-11-26
-### 单元测试时model引入报错提示：model中缺少function原因
-ES6模块化与commonJS不可以混用，可能会出现__导入导出时内容莫名被过滤的__奇怪的情况(应该追一下源码查看原因)
+### 单元测试
+- 时model引入报错提示：model中缺少function原因,ES6模块化与commonJS不可以混用，可能会出现__导入导出时内容莫名被过滤的__奇怪的情况(应该追一下源码查看原因)
+- 每次测试时必须打开新的mongoose链接(mongoose.connect)
+
+### express router分散整合
+- 通过express.router()生成的实例实现模块化路由
+- 通过express().use(router)收集所有模块化路由，实现路由合并

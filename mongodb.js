@@ -3,6 +3,7 @@ import config from './config'
 
 const db = mongoose.connection
 
+// 判断生产环境还是开发环境，根据不同值链接不同库
 let url = process.env.NODE_ENV === 'production' ? config.proDBUrl : url = config.devDBUrl
 
 mongoose.connect(url, {
