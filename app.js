@@ -2,12 +2,18 @@ import express from 'express'
 import mongoose from 'mongoose'
 import db from './mongodb'   // mongoose连接在程序开始时就执行，直到程序结束
 import router from './routes/index'  
-import config from './config'
 import bodyParser from 'body-parser'
+import morgan from 'morgan'
 
-const port = process.env.PORT || config.port
+import config from './config'
 
 const app = express()
+
+/**
+ * configuration
+ */
+const port = process.env.PORT || config.port
+app.set('superSecret', config.secret)   // secret variable
 
 // cors解决跨域问题
 /* app.all('*', (req, res, next) => {
@@ -23,8 +29,14 @@ const app = express()
 	}
 }); */
 
+
+// use body parser so we can get info from POST and/or URL parameters
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+
+// use morgan to log requests to the console
+app.use(morgan('dev'))
+
 // 挂载全部模块路由
 router(app)
 

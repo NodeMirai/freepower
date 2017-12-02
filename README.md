@@ -75,3 +75,11 @@ app.js中通过process.env.PORT获取命令行中指定的端口号
 ### express router分散整合
 - 通过express.router()生成的实例实现模块化路由
 - 通过express().use(router)收集所有模块化路由，实现路由合并
+
+## 20171201
+### 添加token验证
+1. 安装jsonwebtoken模块与morgn(log request to console)
+2. 配置文件中新增secret项：used when we create and verify JSON Web Tokens
+
+### 添加morgan帮助查看请求日志
+### USER密码不可直接以文本形式存储，应该存储hash后的值
