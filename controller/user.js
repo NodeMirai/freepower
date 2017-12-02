@@ -26,7 +26,7 @@ const UserController = {
             admin: user.username
           }
           var token = jwt.sign(payload, config.secret, {
-            expiresIn: "1m"   //  24小时后过期
+            expiresIn: "1d"   //  24小时后过期
           })
 
           res.json({
