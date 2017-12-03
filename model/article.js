@@ -18,6 +18,4 @@ const articleSchema = new Schema({
 
 let Article = mongoose.model('Article', articleSchema)
 
-console.log(Article)
-
 export default Article

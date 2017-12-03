@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/article', article.getAllArticles)
 router.post('/article', article.insertOne)
-router.delete('/article/id', article.deleteOne)
+router.delete('/article/:id', article.deleteOne)
 router.put('/article', article.updateOneAndReturn)
 
 export default router

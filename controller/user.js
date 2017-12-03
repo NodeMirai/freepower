@@ -17,7 +17,7 @@ const UserController = {
           status: 500
         })
       }
-
+      console.log(userParam)
       if (user) {
         // 如果查到用户且密码正确，则回传给用户token
         if (userParam.password === user.password) {
@@ -28,7 +28,6 @@ const UserController = {
           var token = jwt.sign(payload, config.secret, {
             expiresIn: "1d"   //  24小时后过期
           })
-
           res.json({
             success: true,
             message: 'Enjoy your token!',

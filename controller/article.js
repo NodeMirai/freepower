@@ -21,7 +21,6 @@ const ArticleController = {
   // 新增文章
   insertOne(req, res, next) {
     let article = req.body
-    console.log(article)
     ArticleModel.create( article ,(err, article) => {
       if (err) {
         console.error(err)
@@ -49,7 +48,6 @@ const ArticleController = {
   deleteOne(req, res, next) {
     // 获取删除id，根据id删除数据
     let _id = req.params.id
-    console.log(_id)
     ArticleModel.deleteOne({ _id }, (err) => {
       res.send({
         status: 200,
