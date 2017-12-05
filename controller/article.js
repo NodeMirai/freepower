@@ -19,7 +19,7 @@ const ArticleController = {
   },
 
   // 新增文章
-  insertOne(req, res, next) {
+  addArticle(req, res, next) {
     let article = req.body
     ArticleModel.create( article ,(err, article) => {
       if (err) {
@@ -45,10 +45,10 @@ const ArticleController = {
   },
 
   // 删除单个文章
-  deleteOne(req, res, next) {
+  deleteArticle(req, res, next) {
     // 获取删除id，根据id删除数据
     let _id = req.params.id
-    ArticleModel.deleteOne({ _id }, (err) => {
+    ArticleModel.findOneAndUpdate({ _id, isDelete: 1 }, (err) => {
       res.send({
         status: 200,
         message: 'delete success'
@@ -57,7 +57,7 @@ const ArticleController = {
   },
 
   // 更新单个文章
-  updateOneAndReturn(req, res, next) {
+  updateArticle(req, res, next) {
     let query = req.body
     console.log(query)
     ArticleModel.findOneAndUpdate({_id: query.id}, { title: query.title, content: query.content }, () => {

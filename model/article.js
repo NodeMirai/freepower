@@ -14,6 +14,7 @@ const articleSchema = new Schema({
   // commit:      与其他用户相关，待定
   words: Number,
   readCounts: Number, 
+  isDelete: {type: Number, default:0},  // 1表示删除  0表示未删除
 })
 
 let Article = mongoose.model('Article', articleSchema)

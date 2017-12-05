@@ -16,6 +16,7 @@ const userSchema = new Schema({
   birthday: Date,
   age: Number,
   loginTime: { type: Date, default: Date.now },
+  isDelete: {type: Number, default:0},  // 1表示删除  0表示未删除 
 })
 
 const UserModel = mongoose.model('user', userSchema)
