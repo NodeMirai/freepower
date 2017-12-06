@@ -29,21 +29,21 @@ const UserController = {
             expiresIn: "1d"   //  24小时后过期
           })
           res.json({
-            success: true,
+            status: 200,
             message: 'Enjoy your token!',
             token: token,
           })
         } else {
           // 前端提示用户密码输入错误
           res.json({
-            success: false,
+            status: 500,
             message: '认证失败，用户密码错误',
           })
         }
       } else {
         // 前端提示该用户名不存在，请注册
         res.json({
-          success: false,
+          status: 500,
           message: '认证失败，用户不存在',
         })
       }
