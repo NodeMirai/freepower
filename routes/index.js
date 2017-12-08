@@ -14,8 +14,8 @@ function authenticate(req, res, next) {
   if (token) {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
-        return res.json({
-          success: false,
+        return res.status(403).send({
+          status: 403,
           message: 'Failed to authenticate token.'
         })
       } else {
@@ -27,7 +27,7 @@ function authenticate(req, res, next) {
   } else {
     // 不存在token，返回403
     return res.status(403).send({
-      success: false,
+      status: 403,
       message: 'No token provided'
     })
   }

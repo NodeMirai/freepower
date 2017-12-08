@@ -7,7 +7,7 @@ import ArticleModel from '../model/article'
 
 const ArticleController = {
   getAllArticles(req, res, next) {
-    let data = ArticleModel.find((err, articles) => {
+    let data = ArticleModel.find({ isDelete: 0 },(err, articles) => {
       if (err) console.error(err)
 
       return res.send({
@@ -34,7 +34,7 @@ const ArticleController = {
   },
 
   // 删除全部文章
-  deleteAll(req, res, next) {
+  /* deleteAll(req, res, next) {
     ArticleModel.remove(function(err) {
       if (err) console.error(err)
       res.send({
@@ -42,13 +42,14 @@ const ArticleController = {
         message: 'delete all successed'
       })
     })
-  },
+  }, */
 
   // 删除单个文章
   deleteArticle(req, res, next) {
     // 获取删除id，根据id删除数据
     let _id = req.params.id
-    ArticleModel.findOneAndUpdate({ _id, isDelete: 1 }, (err) => {
+    console.log(_id)
+    ArticleModel.findOneAndUpdate({ _id }, {  isDelete: 1  },(err) => {
       res.send({
         status: 200,
         message: 'delete success'
