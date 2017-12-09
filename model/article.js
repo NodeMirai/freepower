@@ -9,12 +9,13 @@ const Schema = mongoose.Schema
 const articleSchema = new Schema({
   title: String,
   datetime: Date,
-  type: String,
+  type: String,  // 文章分类，未来需要做文章的分类
   content: String,
-  // commit:      与其他用户相关，待定
-  words: Number,
-  readCounts: Number, 
+  commit: String,     // 评论，与其他用户相关，待定
+  words: Number,  // 字数
+  readCounts: Number,  // 阅读次数
   isDelete: {type: Number, default:0},  // 1表示删除  0表示未删除
+  userId: String,  // 用户id
 })
 
 let Article = mongoose.model('Article', articleSchema)

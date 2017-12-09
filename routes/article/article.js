@@ -2,13 +2,12 @@
  * 文章模块，实现基本增删改查
  */
 import express from 'express'
-import article from '../../controller/article'
+import { protectedArticleController, ArticleController } from '../../controller/article'
 
-const router = express.Router()
+export const protectetArticleRouter = express.Router()
+export const articleRouter = express.Router()
 
-router.get('/article', article.getAllArticles)
-router.post('/article', article.addArticle)
-router.delete('/article/:id', article.deleteArticle)
-router.put('/article', article.updateArticle)
-
-export default router
+articleRouter.get('/article', ArticleController.getAllArticles)
+protectetArticleRouter.post('/article', protectedArticleController.addArticle)
+protectetArticleRouter.delete('/article/:id', protectedArticleController.deleteArticle)
+protectetArticleRouter.put('/article', protectedArticleController.updateArticle)

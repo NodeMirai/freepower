@@ -2,7 +2,7 @@
  * 总的路由管理文件，目录下其他路由实例都会引入该模块下
  */
 
-import article from './article/article'
+import { protectetArticleRouter, articleRouter } from './article/article'
 import user from './user/user'
 import jwt from 'jsonwebtoken'
 import config from '../config'
@@ -36,7 +36,8 @@ function authenticate(req, res, next) {
 
 // use使用顺序非常重要，路由匹配时会根据use的先后顺序一次匹配
 export default app => {
-  app.use('/api/authenticate', user)  // 登陆认证路由，必须放在token认证之前
+  app.use('/api/authenticate', [user])  // 登陆认证路由，必须放在token认证之前
+  app.use('/api', [articleRouter])
   app.use(authenticate)  //  token认证中间件,放在所有需要token保护的路由前
-  app.use('/api', [article])
+  app.use('/api', [protectetArticleRouter])
 }
