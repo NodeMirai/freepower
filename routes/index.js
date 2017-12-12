@@ -3,7 +3,7 @@
  */
 
 import { protectetArticleRouter, articleRouter } from './article/article'
-import user from './user/user'
+import { userRouter, protectetUserRouter } from './user/user'
 import jwt from 'jsonwebtoken'
 import config from '../config'
 
@@ -36,8 +36,9 @@ function authenticate(req, res, next) {
 
 // use使用顺序非常重要，路由匹配时会根据use的先后顺序一次匹配
 export default app => {
-  app.use('/api/authenticate', [user])  // 登陆认证路由，必须放在token认证之前
+  app.use('/api/authenticate', [userRouter])  // 登陆认证路由，必须放在token认证之前
   app.use('/api', [articleRouter])
   app.use(authenticate)  //  token认证中间件,放在所有需要token保护的路由前
+  app.use('/api/user', protectetUserRouter)
   app.use('/api', [protectetArticleRouter])
 }

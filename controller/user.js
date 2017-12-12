@@ -65,7 +65,7 @@ const UserController = {
         // 提示用户已存在
         res.send({
           status: 200,
-          data: user.username,
+          data: user,
           message: '无法注册，用户已存在',
         })
       } else {
@@ -86,7 +86,8 @@ const UserController = {
       if (err) {
         console.error(err)
         res.send({
-          status: 500
+          status: 500,
+          message: 'error',
         })
       }
       res.send({
@@ -95,7 +96,27 @@ const UserController = {
         message: 'add success',
       })
     })
-  }
+  },
+
+  updateUserInfo(req, res, next) {
+    let uesr = req.body
+    UserModel.findOneAndUpdate({ username: user.username }, user, function(err, user) {
+      if (err) {
+        consolr.err(err)
+        res.send({
+          status: 500,
+          message: 'error',
+        })
+      } 
+      
+      res.send({
+        status: 200,
+        message: 'update user success',
+        data: user,
+      })
+
+    })
+  },
 
 }
 
