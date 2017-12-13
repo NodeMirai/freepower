@@ -101,9 +101,10 @@ const UserController = {
     })
   },
 
+  /*********  token认证路由  ***********/
   updateUserInfo(req, res, next) {
-    let uesr = req.body
-    UserModel.findOneAndUpdate({ username: user.username }, user, function(err, user) {
+    let user = req.body
+    UserModel.findOneAndUpdate({ username: req.decoded.admin }, user, function(err, user) {
       if (err) {
         consolr.err(err)
         res.send({
@@ -120,6 +121,25 @@ const UserController = {
 
     })
   },
+
+  getUserInfo(req, res, next) {
+    UserModel.findOne({ username: req.decoded.admin }, (err, user) => {
+      if (err) {
+        console.error(err)
+        res.send({
+          status: 500,
+          message: '查询用户信息失败'
+        })
+      }
+
+      res.send({
+        status: 200,
+        data: user,
+        message: 'get user info success'
+      })
+      
+    })
+  }
 
 }
 

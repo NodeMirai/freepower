@@ -11,3 +11,4 @@ userRouter.put('/', UserController.login)
 
 // 用户信息修改
 protectetUserRouter.put('/', UserController.updateUserInfo)
+protectetUserRouter.get('/', UserController.getUserInfo)
