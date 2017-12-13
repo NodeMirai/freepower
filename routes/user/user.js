@@ -5,9 +5,9 @@ export const userRouter = express.Router()
 export const protectetUserRouter = express.Router()
 
 // 注册相关
-router.get('/:username', UserController.findUserByUserName )
-router.post('/', UserController.register )
-router.put('/', UserController.login )
+userRouter.get('/:username', UserController.findUserByUserName)
+userRouter.post('/', UserController.register)
+userRouter.put('/', UserController.login)
 
 // 用户信息修改
-protectetArticleRouter.put('/', UserController.updateUserInfo )
+protectetUserRouter.put('/', UserController.updateUserInfo)

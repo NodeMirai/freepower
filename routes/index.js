@@ -8,9 +8,10 @@ import jwt from 'jsonwebtoken'
 import config from '../config'
 
 function authenticate(req, res, next) {
-  //  从请求中获取token
+  console.log(req.path)
+    //  从请求中获取token
   var token = req.headers['authorization']
-  // 校验token有效性
+    // 校验token有效性
   if (token) {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err) {
@@ -36,9 +37,9 @@ function authenticate(req, res, next) {
 
 // use使用顺序非常重要，路由匹配时会根据use的先后顺序一次匹配
 export default app => {
-  app.use('/api/authenticate', [userRouter])  // 登陆认证路由，必须放在token认证之前
+  app.use('/api/authenticate', [userRouter]) // 登陆认证路由，必须放在token认证之前
   app.use('/api', [articleRouter])
-  app.use(authenticate)  //  token认证中间件,放在所有需要token保护的路由前
+  app.use(authenticate) //  token认证中间件,放在所有需要token保护的路由前
   app.use('/api/user', protectetUserRouter)
   app.use('/api', [protectetArticleRouter])
 }

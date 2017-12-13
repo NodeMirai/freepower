@@ -3,7 +3,7 @@
  */
 
 import UserModel from '../model/user'
-import jwt from 'jsonwebtoken'  // used to create, sign, and verify tokens
+import jwt from 'jsonwebtoken' // used to create, sign, and verify tokens
 import config from '../config'
 
 const UserController = {
@@ -26,7 +26,7 @@ const UserController = {
             admin: user.username
           }
           var token = jwt.sign(payload, config.secret, {
-            expiresIn: "1d"   //  24小时后过期
+            expiresIn: "1d" //  24小时后过期
           })
           res.json({
             status: 200,
@@ -53,6 +53,7 @@ const UserController = {
   // 注册时查询用户是否重复
   findUserByUserName(req, res, next) {
     let username = req.params.username
+    console.log(username)
     UserModel.findOne({ username }, (err, user) => {
       if (err) {
         console.error(err)
@@ -60,11 +61,11 @@ const UserController = {
           status: 500
         })
       }
-
+      console.log(user)
       if (user) {
         // 提示用户已存在
         res.send({
-          status: 200,
+          status: 500,
           data: user,
           message: '无法注册，用户已存在',
         })
@@ -90,11 +91,13 @@ const UserController = {
           message: 'error',
         })
       }
-      res.send({
-        status: 200,
-        data: user,
-        message: 'add success',
-      })
+      if (user) {
+        res.send({
+          status: 200,
+          data: user,
+          message: 'add success',
+        })
+      }
     })
   },
 
@@ -107,8 +110,8 @@ const UserController = {
           status: 500,
           message: 'error',
         })
-      } 
-      
+      }
+
       res.send({
         status: 200,
         message: 'update user success',
