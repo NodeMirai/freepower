@@ -7,6 +7,22 @@ import ArticleModel from '../model/article'
 
 export const protectedArticleController = {
 
+  getAllArticleByUserId() {
+    let searchData = { 
+      isDelete: 0 ,
+      userId: req.decoded.admin
+    }
+    let data = ArticleModel.find(searchData, (err, articles) => {
+      if (err) console.error(err)
+
+      return res.send({
+        status: 200,
+        message: '查询数据成功',
+        data: articles
+      })
+    })
+  },
+
   addArticle(req, res, next) {
     let article = req.body
     ArticleModel.create( { ...article, userId: req.decoded.admin } ,(err, article) => {
@@ -45,18 +61,20 @@ export const protectedArticleController = {
 
 export const ArticleController = {
   getAllArticles(req, res, next) {
-    let searchData = { isDelete: 0 }
-    if (req.decoded) {
-      searchData.userId = req.decoded.admin
-    }
-    let data = ArticleModel.find(searchData, (err, articles) => {
-      if (err) console.error(err)
-
-      return res.send({
-        status: 200,
-        message: '查询数据成功',
-        data: articles
-      })
+    // 关联用户与文章信息查询
+    ArticleModel.findUserInfoByArticleId((err, list) => {
+      console.log(list)
+      if (list) {
+        res.send({
+          status: 200,
+          message: 'find success'
+        })
+      } else {
+        res.send({
+          status: 500,
+          message: 'find failed'
+        })
+      }
     })
   },
 }

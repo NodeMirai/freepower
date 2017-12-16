@@ -7,7 +7,9 @@ import { protectedArticleController, ArticleController } from '../../controller/
 export const protectetArticleRouter = express.Router()
 export const articleRouter = express.Router()
 
-articleRouter.get('/article', ArticleController.getAllArticles)
+protectetArticleRouter.get('/article/:userId', protectedArticleController.getAllArticleByUserId)
 protectetArticleRouter.post('/article', protectedArticleController.addArticle)
 protectetArticleRouter.delete('/article/:id', protectedArticleController.deleteArticle)
 protectetArticleRouter.put('/article', protectedArticleController.updateArticle)
+
+articleRouter.get('/article', ArticleController.getAllArticles)
