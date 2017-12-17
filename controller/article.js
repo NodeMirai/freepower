@@ -72,13 +72,14 @@ export const ArticleController = {
             status: 500,
             message: "get articles failed"
           })  
+        } else {
+          console.log(articleList)
+          res.send({
+            status: 200,
+            message: "get articles success",
+            data: articleList,
+          })
         }
-        console.log(articleList)
-        res.send({
-          status: 200,
-          message: "get articles success",
-          data: articleList,
-        })
       })
   },
 }
