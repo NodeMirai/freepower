@@ -108,3 +108,4 @@ app.js中通过process.env.PORT获取命令行中指定的端口号
 ## 2017-12-16
 ### 首页文章与用户信息连接查询
 1. mongoose如何关联查询
+2. jwt验证改用UserId做加密

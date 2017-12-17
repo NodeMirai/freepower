@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+import mongoose from 'mongoose'
 import UserModel from '../model/user'
 import jwt from 'jsonwebtoken' // used to create, sign, and verify tokens
 import config from '../config'
@@ -23,7 +23,7 @@ const UserController = {
         if (userParam.password === user.password) {
           // 为token添加payload，secret，expiresInMinutes
           const payload = {
-            admin: user.username
+            admin: user.userId
           }
           var token = jwt.sign(payload, config.secret, {
             expiresIn: "1d" //  24小时后过期
@@ -83,7 +83,7 @@ const UserController = {
 
   register(req, res, next) {
     let user = req.body
-    UserModel.create(user, (err, user) => {
+    UserModel.create({...user, userId: mongoose.Types.ObjectId()}, (err, user) => {
       if (err) {
         console.error(err)
         res.send({
@@ -104,7 +104,7 @@ const UserController = {
   /*********  token认证路由  ***********/
   updateUserInfo(req, res, next) {
     let user = req.body
-    UserModel.findOneAndUpdate({ username: req.decoded.admin }, user, function(err, user) {
+    UserModel.findOneAndUpdate({ userId: req.decoded.admin }, user, function(err, user) {
       if (err) {
         consolr.err(err)
         res.send({
@@ -123,7 +123,7 @@ const UserController = {
   },
 
   getUserInfo(req, res, next) {
-    UserModel.findOne({ username: req.decoded.admin }, (err, user) => {
+    UserModel.findOne({ userId: req.decoded.admin }, (err, user) => {
       if (err) {
         console.error(err)
         res.send({
