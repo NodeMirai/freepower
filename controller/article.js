@@ -62,32 +62,23 @@ export const protectedArticleController = {
 
 export const ArticleController = {
   getAllArticles(req, res, next) {
-    ArticleModel.findOne({ title: "test" }, (err, user) => {
-      console.log(user)
-    })
     // 关联用户与文章信息查询
-    ArticleModel.findOne({ title: "test" })
-        .populate('user',)
-        .exec((err, doc) => {
-          console.log(err)
-          console.log(doc)
+    ArticleModel.find()
+      .populate('user', 'nickname avatar')
+      .exec((err, articleList) => {
+        if (err) { 
+          console.error(err) 
           res.send({
-            status: 200
-          })
-        })
-    /* ArticleModel.findUserInfoByArticleId(function(err, list) {
-      console.log(list)
-      if (list) {
+            status: 500,
+            message: "get articles failed"
+          })  
+        }
+        console.log(articleList)
         res.send({
           status: 200,
-          message: 'find success'
+          message: "get articles success",
+          data: articleList,
         })
-      } else {
-        res.send({
-          status: 500,
-          message: 'find failed'
-        })
-      }
-    }) */
+      })
   },
 }

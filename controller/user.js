@@ -17,7 +17,6 @@ const UserController = {
           status: 500
         })
       }
-      console.log(userParam)
       if (user) {
         // 如果查到用户且密码正确，则回传给用户token
         if (userParam.password === user.password) {
@@ -31,7 +30,12 @@ const UserController = {
           res.json({
             status: 200,
             message: 'Enjoy your token!',
-            token: token,
+            data: {
+              token: token,
+              userinfo: {
+                avatar: user.avatar
+              }
+            },
           })
         } else {
           // 前端提示用户密码输入错误
