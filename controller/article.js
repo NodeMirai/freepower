@@ -62,14 +62,19 @@ export const protectedArticleController = {
 
 export const ArticleController = {
   getAllArticles(req, res, next) {
-    console.log('hehe')
+    ArticleModel.findOne({ title: "test" }, (err, user) => {
+      console.log(user)
+    })
     // 关联用户与文章信息查询
-    /* ArticleModel.findOne({ title: "1234" })
-        .populate('userId', 'username')
+    ArticleModel.findOne({ title: "test" })
+        .populate('user',)
         .exec((err, doc) => {
           console.log(err)
           console.log(doc)
-        }) */
+          res.send({
+            status: 200
+          })
+        })
     /* ArticleModel.findUserInfoByArticleId(function(err, list) {
       console.log(list)
       if (list) {

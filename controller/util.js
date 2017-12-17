@@ -21,7 +21,7 @@ const UtilController = {
       if (err) throw err
 
       // 将头像名称更新到用户信息中
-      UserModel.findOneAndUpdate({ userId: req.decoded.admin },{ avatar: resourceUrl }, (err, user) => {
+      UserModel.findOneAndUpdate({ _id: req.decoded.admin },{ avatar: resourceUrl }, (err, user) => {
         if (err) throw err
         console.log(user)
       })

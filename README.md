@@ -108,4 +108,5 @@ app.js中通过process.env.PORT获取命令行中指定的端口号
 ## 2017-12-16
 ### 首页文章与用户信息连接查询
 1. mongoose如何关联查询
+__注：所有model之间连接都是通过ObjectId进行,ref所在字段有与对应model中的_id关联__
 2. jwt验证改用UserId做加密

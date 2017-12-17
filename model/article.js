@@ -25,7 +25,7 @@ const articleSchema = new Schema({
   findUserInfoByArticleId: function(callback) {
     return this 
       .findOne({title:"1234"},(err, article) => {console.log(article)})
-      .populate('userId')
+      .populate('_id')
       .exec(callback)
   }
 } */
