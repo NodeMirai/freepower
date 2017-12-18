@@ -5,6 +5,7 @@
 import mongoose from 'mongoose'
 import ArticleModel from '../model/article'
 import UserModel from '../model/user'
+import article from '../model/article';
 
 export const protectedArticleController = {
 
@@ -81,5 +82,23 @@ export const ArticleController = {
           })
         }
       })
+  },
+  getArticleById(req, res, next) {
+    let articleId = req.params.articleId
+    console.log(articleId)
+    ArticleModel.findById(articleId, (err, article) => {
+      if (err) {
+        console.error(err)
+        res.send({
+          status: 500,
+          message: 'get article failed',
+        })
+      } else {
+        res.send({
+          status: 200,
+          data: article
+        })
+      }
+    })
   },
 }

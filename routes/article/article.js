@@ -13,3 +13,4 @@ protectetArticleRouter.delete('/article/:id', protectedArticleController.deleteA
 protectetArticleRouter.put('/article', protectedArticleController.updateArticle)
 
 articleRouter.get('/article', ArticleController.getAllArticles)
+articleRouter.get('/article/:articleId', ArticleController.getArticleById)
