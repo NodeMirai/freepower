@@ -104,3 +104,9 @@ app.js中通过process.env.PORT获取命令行中指定的端口号
 ### 添加文件上传接口 multer
 1. 安装multer模块用于文件上传
 2. 生成文件名后，将图片url存入数据库
+
+## 2017-12-16
+### 首页文章与用户信息连接查询
+1. mongoose如何关联查询
+__注：所有model之间连接都是通过ObjectId进行,ref所在字段有与对应model中的_id关联__
+2. jwt验证改用UserId做加密

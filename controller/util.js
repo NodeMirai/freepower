@@ -20,12 +20,20 @@ const UtilController = {
     fs.writeFile(staticPath, file.buffer, (err) => {
       if (err) throw err
 
-      // 将头像名称更新到用户信息中
-      UserModel.findOneAndUpdate({ username: req.decoded.admin },{ avatar: resourceUrl }, (err, user) => {
+      // 将头像名称更新到用户信息中  后期需要将该部分分离
+      UserModel.findOneAndUpdate({ _id: req.decoded.admin },{ avatar: resourceUrl }, (err, user) => {
         if (err) throw err
         console.log(user)
+
+        res.send(
+          {
+            status: 200,
+            data: resourceUrl
+          }
+        );
       })
-      res.send({ ret_code: '0' });
+
+
     })
   }
 }

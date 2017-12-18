@@ -7,6 +7,10 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const articleSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   title: String,
   datetime: Date,
   type: String,  // 文章分类，未来需要做文章的分类
@@ -15,8 +19,16 @@ const articleSchema = new Schema({
   words: Number,  // 字数
   readCounts: Number,  // 阅读次数
   isDelete: {type: Number, default:0},  // 1表示删除  0表示未删除
-  userId: String,  // 用户id
 })
+
+/* articleSchema.statics = {
+  findUserInfoByArticleId: function(callback) {
+    return this 
+      .findOne({title:"1234"},(err, article) => {console.log(article)})
+      .populate('_id')
+      .exec(callback)
+  }
+} */
 
 let Article = mongoose.model('Article', articleSchema)
 
