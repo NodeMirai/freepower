@@ -114,7 +114,7 @@ __注：所有model之间连接都是通过ObjectId进行,ref所在字段有与�
 ## 2017-12-19
 ### 解决spa单页刷新404问题
 1. 添加connect-history-api-fallback中间件，保证react单页应用使用h5 history刷新时无404状态
-2. nginx配置重定向直接将路径返回至前端: 默认index开头的url表示跳转页面，nginx对index匹配的路径进行重定向，从而防止前端访问服务器404问题
+2. nginx配置重定向直接将路径返回至前端: 默认index开头的url表示跳转页面，nginx对index匹配的路径进行重定向，通过index与ajax请求区分开，从而防止前端访问服务器404问题
         location /index/ {
             try_files $uri /index.html;
         }
