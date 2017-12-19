@@ -110,3 +110,11 @@ app.js中通过process.env.PORT获取命令行中指定的端口号
 1. mongoose如何关联查询
 __注：所有model之间连接都是通过ObjectId进行,ref所在字段有与对应model中的_id关联__
 2. jwt验证改用UserId做加密
+
+## 2017-12-19
+### 解决spa单页刷新404问题
+1. 添加connect-history-api-fallback中间件，保证react单页应用使用h5 history刷新时无404状态
+2. nginx配置重定向直接将路径返回至前端: 默认index开头的url表示跳转页面，nginx对index匹配的路径进行重定向，从而防止前端访问服务器404问题
+        location /index/ {
+            try_files $uri /index.html;
+        }
