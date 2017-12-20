@@ -27,9 +27,13 @@ export const protectedArticleController = {
 
   addArticle(req, res, next) {
     let article = req.body
-    ArticleModel.create({ ...article, user: mongoose.Types.ObjectId(req.decoded.admin) }, (err, article) => {
+    ArticleModel.create({...article, user: mongoose.Types.ObjectId(req.decoded.admin) }, (err, article) => {
       if (err) {
         console.error(err)
+        res.send({
+          status: 500,
+          message: err
+        })
       }
       res.send({
         status: 200,
@@ -52,7 +56,7 @@ export const protectedArticleController = {
   updateArticle(req, res, next) {
     let query = req.body
     console.log(query)
-    ArticleModel.findOneAndUpdate({ _id: query.id, user: req.decoded.admin }, { title: query.title, content: query.content }, () => {
+    ArticleModel.findOneAndUpdate({ _id: query.id, user: req.decoded.admin }, query, () => {
       res.send({
         status: 200,
         message: 'update success'
@@ -67,12 +71,12 @@ export const ArticleController = {
     ArticleModel.find()
       .populate('user', 'nickname avatar')
       .exec((err, articleList) => {
-        if (err) { 
-          console.error(err) 
+        if (err) {
+          console.error(err)
           res.send({
             status: 500,
             message: "get articles failed"
-          })  
+          })
         } else {
           console.log(articleList)
           res.send({
