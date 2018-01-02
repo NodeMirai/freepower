@@ -14,15 +14,20 @@ export const protectedArticleController = {
       isDelete: 0,
       user: req.decoded.admin,
     }
-    console.log(searchData)
-    let data = ArticleModel.find(searchData, (err, articles) => {
-      if (err) console.error(err)
-      res.send({
-        status: 200,
-        message: '查询数据成功',
-        data: articles
+
+    ArticleModel
+      .find(searchData)
+      .sort({ _id: -1 })
+      .exec((err, articles) => {
+        if (err) console.error(err)
+        console.log(articles)
+        res.send({
+          status: 200,
+          message: '查询数据成功',
+          data: articles
+        })
       })
-    })
+
   },
 
   addArticle(req, res, next) {

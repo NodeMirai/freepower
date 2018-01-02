@@ -21,16 +21,14 @@ const UtilController = {
       if (err) throw err
 
       // 将头像名称更新到用户信息中  后期需要将该部分分离
-      UserModel.findOneAndUpdate({ _id: req.decoded.admin },{ avatar: resourceUrl }, (err, user) => {
+      UserModel.findOneAndUpdate({ _id: req.decoded.admin }, { avatar: resourceUrl }, (err, user) => {
         if (err) throw err
         console.log(user)
 
-        res.send(
-          {
-            status: 200,
-            data: resourceUrl
-          }
-        );
+        res.send({
+          status: 200,
+          data: resourceUrl
+        });
       })
 
 
