@@ -73,8 +73,9 @@ export const protectedArticleController = {
 export const ArticleController = {
   getAllArticles(req, res, next) {
     // 关联用户与文章信息查询
-    ArticleModel.find()
+    ArticleModel.find({ isDelete: 0 })
       .populate('user', 'nickname avatar')
+      .sort('-_id')
       .exec((err, articleList) => {
         if (err) {
           console.error(err)
