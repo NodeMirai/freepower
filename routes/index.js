@@ -3,15 +3,13 @@
  */
 
 import jwt from 'jsonwebtoken'
+import Router from 'koa-router'
 
-import { protectetArticleRouter, articleRouter } from './article/article'
-import { userRouter, protectetUserRouter } from './user/user'
-import { utilRouter } from './util/util'
+const router = new Router()
 
-import config from '../config'
-
-function authenticate(req, res, next) {
-  console.log(req.path)
+async function authenticate(ctx, next) {
+  console.log('hehe----------------')
+  /* console.log(req.path)
     //  从请求中获取token
   var token = req.headers['authorization']
     // 校验token有效性
@@ -34,14 +32,13 @@ function authenticate(req, res, next) {
       status: 403,
       message: 'No token provided'
     })
-  }
+  } */
 
 }
 
-// use使用顺序非常重要，路由匹配时会根据use的先后顺序一次匹配
-export default app => {
-  app.use('/api/authenticate', [userRouter]) // 登陆认证路由，必须放在token认证之前
-  app.use('/api/index', [articleRouter])
-  app.use(authenticate) //  token认证中间件,放在所有需要token保护的路由前
-  app.use('/api', [protectetArticleRouter, utilRouter, protectetUserRouter])
-}
+// app.use('/api/authenticate', [userRouter]) // 登陆认证路由，必须放在token认证之前
+
+router.use('/', authenticate) //  token认证中间件,放在所有需要token保护的路由前
+// app.use('/api', [ utilRouter, protectetUserRouter ])
+
+export default router 

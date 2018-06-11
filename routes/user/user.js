@@ -1,8 +1,8 @@
-import express from 'express'
+import Router from 'koa-router'
 import UserController from '../../controller/user'
 
-export const userRouter = express.Router()
-export const protectetUserRouter = express.Router()
+export const userRouter = Router()
+export const protectetUserRouter = Router()
 
 // 注册相关
 userRouter.get('/:username', UserController.findUserByUserName)
