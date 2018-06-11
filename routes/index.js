@@ -38,7 +38,7 @@ async function authenticate(ctx, next) {
 
 // app.use('/api/authenticate', [userRouter]) // 登陆认证路由，必须放在token认证之前
 
-router.use('/', authenticate) //  token认证中间件,放在所有需要token保护的路由前
+router.get('/', authenticate) //  token认证中间件,放在所有需要token保护的路由前
 // app.use('/api', [ utilRouter, protectetUserRouter ])
 
 export default router 
