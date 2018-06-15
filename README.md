@@ -118,3 +118,6 @@ __注：所有model之间连接都是通过ObjectId进行,ref所在字段有与�
         location /index/ {
             try_files $uri /index.html;
         }
+
+
+jenkins
